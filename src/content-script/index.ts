@@ -16,3 +16,17 @@ self.onerror = function (message, source, lineno, colno, error) {
     `Error: ${message}\nSource: ${source}\nLine: ${lineno}\nColumn: ${colno}\nError object: ${error}`
   )
 }
+
+
+// content.js
+const pageTitle = document.title;
+const pageContent = document.body.innerText;
+
+// Enviar la información al background script o al side panel
+chrome.runtime.sendMessage({
+  type: 'PAGE_INFO',
+  data: {
+    title: pageTitle,
+    content: pageContent,
+  },
+});

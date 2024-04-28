@@ -46,6 +46,7 @@ export default defineConfig({
         { src: 'src/options/pages', path: 'options/' },
         { src: 'src/popup/pages', path: 'popup/' },
         { src: 'src/setup/pages', path: 'setup/' },
+        { src: 'src/side-panel/pages', path: 'side-panel/' },
       ],
       dts: 'src/typed-router.d.ts',
       extensions: ['.vue'],

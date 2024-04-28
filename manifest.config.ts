@@ -18,11 +18,14 @@ export default defineManifest(async (env) => ({
   version_name: version,
   manifest_version: 3,
   // key: 'ekgmcbpgglflmgcfajnglpbcbdccnnje',
-  action: {
-    default_popup: 'src/popup/index.html',
-  },
+  // action: {
+  //   default_popup: 'src/popup/index.html',
+  // },
   background: {
     service_worker: 'src/background/index.ts',
+  },
+  side_panel: {
+    default_path: 'src/side-panel/index.html',
   },
   content_scripts: [
     {
@@ -34,6 +37,6 @@ export default defineManifest(async (env) => ({
   ],
   host_permissions: ['*://*/*'],
   options_page: 'src/options/index.html',
-  permissions: ['storage'],
-  web_accessible_resources: [],
+  permissions: ['storage', 'sidePanel'],
+  // web_accessible_resources: [],
 }))

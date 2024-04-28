@@ -20,10 +20,31 @@ const router = createRouter({
 createApp(App).use(router).use(createPinia()).mount('#app')
 
 // console.log(router.getRoutes())
-console.log('Popup loaded')
+
+console.log('Side Panel Loaded');
+
 
 self.onerror = function (message, source, lineno, colno, error) {
   console.info(
     `Error: ${message}\nSource: ${source}\nLine: ${lineno}\nColumn: ${colno}\nError object: ${error}`
   )
 }
+
+
+// side-panel.js
+// Enviar un mensaje al content script para solicitar información
+chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+  const activeTab = tabs[0];
+  if (activeTab) {
+    chrome.tabs.sendMessage(activeTab.id, { type: 'GET_PAGE_INFO' });
+  }
+});
+
+// Escuchar mensajes desde el background script
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === 'PAGE_INFO') {
+    console.log('Información recibida:', message.data);
+    // Puedes mostrar esta información en el side panel
+  }
+});
+
