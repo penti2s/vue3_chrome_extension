@@ -2,6 +2,7 @@ import '@/assets/base.scss'
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 import { createRouter, createWebHashHistory } from 'vue-router/auto'
+import { useSidePanelStore } from '@/stores/side-panel.store'
 import App from './app.vue'
 import './index.scss'
 
@@ -44,7 +45,13 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === 'PAGE_INFO') {
     console.log('Información recibida:', message.data);
+
     // Puedes mostrar esta información en el side panel
+      // Obtener el store
+      const store = useSidePanelStore();
+
+      // Usar una acción del store para pasar la información
+      store.updatePageInfo(message.data.title, message.data.content); // Actualiza el estado
   }
 });
 

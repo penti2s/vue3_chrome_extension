@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useAppStore } from '@/stores/app.store'
+import { useSidePanelStore } from '@/stores/side-panel.store'
 
 const version = __VERSION__
 const displayName = __DISPLAY_NAME__
@@ -8,9 +9,13 @@ const gitCommit = __GIT_COMMIT__
 const gitCommitURL = `${gitURL}/commit/${gitCommit}`
 
 const store = useAppStore()
+const sidePanelStore = useSidePanelStore()
+
 
 const name = computed(() => store.name)
 const count = computed(() => store.count)
+const titlePage = computed(() => sidePanelStore.pageTitle)
+const contentPage = computed(() => sidePanelStore.pageContent)
 </script>
 
 <template>
@@ -64,6 +69,12 @@ const count = computed(() => store.count)
     >
       About
     </RouterLink>
+    <div class="text-center m-4 flex flex-col bg-secondary w-full">
+      <h2>{{titlePage}}</h2>
+      <div>
+        {{ contentPage }}
+      </div>
+    </div>
   </div>
 </template>
 
