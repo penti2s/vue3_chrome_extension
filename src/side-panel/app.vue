@@ -3,14 +3,14 @@
 <template>
   <div class="w-full h-full max-w-[var(--max-width)] flex flex-col justify-items-center bg-base-100">
 
-    <header
+    <!-- <header
       aria-label="Site Header"
       class="bg-base-100"
     >
       Side Panel Header
-    </header>
+    </header> -->
   
-    <main class="flex w-full h-full bg-base-100">
+    <main class="flex w-full h-full bg-base-100 justify-center">
       <RouterView></RouterView>
     </main>
   
